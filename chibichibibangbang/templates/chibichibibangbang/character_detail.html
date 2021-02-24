@@ -1,0 +1,11 @@
+{% extends 'chibichibibangbang/base.html' %} {% block content %}
+
+<h2>{{ character.name }} <a href="{% url 'character_edit' pk=character.pk %}">(edit)</a> <a href="{% url 'character_delete' pk=character.pk %}">(delete)</a></h2>
+<h4>{{ character.franchise }}</h4>
+
+<img src="{{ character.image_url }}" alt="" class="character-image" />
+
+<p>{{ character.artist }}</p>
+<p>Sourced from: {{ character.source_url }}</p>
+
+{% endblock %}
