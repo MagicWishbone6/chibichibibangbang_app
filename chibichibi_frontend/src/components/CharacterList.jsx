@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import Character from './Character'
+import CharacterCard from './CharacterCard'
 import GridContainer from './muik-components/Grid/GridContainer'
 import GridItem from './muik-components/Grid/GridItem'
 
 function CharacterList() {
     const [characters, setCharacters] = useState([])
 
-    const refreshList = (event) => {
+    const refreshList = () => {
         axios
             .get('/characters')
             .then(res => setCharacters(res.data))
@@ -24,7 +24,7 @@ function CharacterList() {
                 {
                     characters.map(char => {
                         return (
-                            <Character 
+                            <CharacterCard 
                             key={char.id}
                             name={char.name}
                             ranchise={char.franchise}
