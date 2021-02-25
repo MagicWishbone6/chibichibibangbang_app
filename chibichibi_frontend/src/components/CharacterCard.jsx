@@ -5,12 +5,15 @@ import Card from "./muik-components/Card/Card.js";
 import CardBody from "./muik-components/Card/CardBody.js";
 import imagesStyles from "./muik-components/assets/jss/material-kit-react/imagesStyles.js";
 import { cardLink, cardSubtitle, cardTitle } from "./muik-components/assets/jss/material-kit-react.js";
+import Popover from '@material-ui/core/Popover';
+import popoverStyles from './muik-components/assets/jss/material-kit-react/popoverStyles'
 
 const styles = {
     ...imagesStyles,
     cardTitle,
     cardSubtitle,
-    cardLink
+    cardLink,
+    ...popoverStyles
   }
   
 const useStyles = makeStyles(styles);
@@ -23,6 +26,10 @@ function CharacterCard({
     image_url
 }) {
     const classes = useStyles()
+    const [anchorElLeft, setAnchorElLeft] = React.useState(null);
+    const [anchorElTop, setAnchorElTop] = React.useState(null);
+    const [anchorElBottom, setAnchorElBottom] = React.useState(null);
+    const [anchorElRight, setAnchorElRight] = React.useState(null);
 
     return (
         <Card 
@@ -37,25 +44,38 @@ function CharacterCard({
             alt={name}
             />
             <CardBody>
-                <h3 className={classes.cardTitle}>
+                <h5>
                     {name}
-                </h3>
-                <h6 className={classes.cardSubtitle}>{franchise}</h6>
-                <p>Artist: {artist}</p>
-                <p>Sourced from: {source_url}</p>
-                <a 
+                    <br></br>
+                    <small><a 
                     href=''
                     className={classes.cardLink}
-                    onClick={(e) => e.preventDefault()}>
-                        View Source
-                </a>
-                <br></br>
-                <a
-                    href="#pablo"
-                    className={classes.cardLink}
-                    onClick={(e) => e.preventDefault()}>
-                        Select Me
-                </a>
+                    onClick={(e) => {
+                        setAnchorElBottom(e.currentTarget)
+                        e.preventDefault()}}>
+                            View Source
+                </a></small>
+                </h5>
+                <Popover
+                    classes={{
+                        paper: classes.popover
+                    }}
+                    open={Boolean(anchorElBottom)}
+                    anchorEl={anchorElBottom}
+                    onClose={() => setAnchorElBottom(null)}
+                    anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center"
+                    }}
+                    transformOrigin={{
+                        vertical: "top",
+                        horizontal: "center"
+                    }}
+                >
+                    <div className={classes.popoverBody}>
+                    {source_url}
+                    </div>
+                </Popover>
             </CardBody>
         </Card>
     );
