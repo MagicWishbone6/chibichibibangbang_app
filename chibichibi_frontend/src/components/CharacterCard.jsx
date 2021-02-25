@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "./muik-components/Card/Card.js";
 import CardBody from "./muik-components/Card/CardBody.js";
 import imagesStyles from "./muik-components/assets/jss/material-kit-react/imagesStyles.js";
+import cardBodyStyle from './muik-components/assets/jss/material-kit-react/components/cardBodyStyle'
+import cardHeaderStyle from './muik-components/assets/jss/material-kit-react/components/cardHeaderStyle'
 import { cardLink, cardSubtitle, cardTitle } from "./muik-components/assets/jss/material-kit-react.js";
 import Popover from '@material-ui/core/Popover';
 import popoverStyles from './muik-components/assets/jss/material-kit-react/popoverStyles'
@@ -13,7 +15,9 @@ const styles = {
     cardTitle,
     cardSubtitle,
     cardLink,
-    ...popoverStyles
+    ...popoverStyles,
+    cardBodyStyle,
+    cardHeaderStyle
   }
   
 const useStyles = makeStyles(styles);
@@ -26,24 +30,23 @@ function CharacterCard({
     image_url
 }) {
     const classes = useStyles()
-    const [anchorElLeft, setAnchorElLeft] = React.useState(null);
-    const [anchorElTop, setAnchorElTop] = React.useState(null);
+    
     const [anchorElBottom, setAnchorElBottom] = React.useState(null);
-    const [anchorElRight, setAnchorElRight] = React.useState(null);
 
     return (
         <Card 
-        style={{width: '12rem'}}>
+        style={{maxWidth: '12rem', margin: '0 8px 8px 0', flex: 'auto'}}
+        >
             <img
             style={{
                 width: "100%", 
                 // display: "block"
             }}
-            className={classes.imgCardTop}
+            className={`${classes.imgCardTop}, ${classes.cardHeaderStyle}`}
             src={image_url}
             alt={name}
             />
-            <CardBody>
+            <CardBody className={classes.cardBodyStyle}>
                 <h5>
                     {name}
                     <br></br>

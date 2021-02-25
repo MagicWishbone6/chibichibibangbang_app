@@ -27,7 +27,7 @@ function CharacterList() {
                             <CharacterCard 
                             key={char.id}
                             name={char.name}
-                            ranchise={char.franchise}
+                            franchise={char.franchise}
                             artist={char.artist}
                             source_url={char.source_url}
                             image_url={char.image_url}

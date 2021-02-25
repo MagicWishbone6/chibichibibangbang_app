@@ -1,5 +1,5 @@
 import Home from './components/Home'
-import CharacterList from './components/CharacterList'
+import CharacterAlbum from './components/CharacterAlbum'
 import Header from './components/muik-components/Header/Header'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       brand='Chibi Chibi Bang Bang'
       />
       <Home />
-      <CharacterList />
+      <CharacterAlbum />
     </>
   );
 }
