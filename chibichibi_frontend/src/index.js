@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './components/muik-components/assets/css/material-kit-react.css.map'
-import './index.css'
+import './components/muik-components/assets/scss/material-kit-react.scss'
 
 ReactDOM.render(
   <React.StrictMode>

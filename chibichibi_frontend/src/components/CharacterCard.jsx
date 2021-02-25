@@ -26,7 +26,7 @@ function CharacterCard({
 
     return (
         <Card 
-        style={{width: '15rem'}}>
+        style={{width: '12rem'}}>
             <img
             style={{
                 width: "100%", 
@@ -43,17 +43,18 @@ function CharacterCard({
                 <h6 className={classes.cardSubtitle}>{franchise}</h6>
                 <p>Artist: {artist}</p>
                 <p>Sourced from: {source_url}</p>
-                <a
-                    href="#pablo"
+                <a 
+                    href=''
                     className={classes.cardLink}
                     onClick={(e) => e.preventDefault()}>
-                    Card link
+                        View Source
                 </a>
+                <br></br>
                 <a
                     href="#pablo"
                     className={classes.cardLink}
                     onClick={(e) => e.preventDefault()}>
-                    Another link
+                        Select Me
                 </a>
             </CardBody>
         </Card>
