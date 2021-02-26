@@ -1,3 +1,6 @@
+import os
+import dj_database_url
+
 """
 Django settings for chibichibi_django project.
 
@@ -22,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g1g-wo&2tuzb5kd3ie$8j69m-0j0##(2z=9(&1ygvluq(f&h9k'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.environ['MODE'] == 'dev' else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,15 +85,8 @@ WSGI_APPLICATION = 'chibichibi_django.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chibichibibangbang',
-        'USER': 'chibichibibangbanguser',
-        'PASSWORD': 'chibichibibangbang',
-        'HOST': 'localhost'
-    }
+  'default': dj_database_url.config(conn_max_age=600)
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -137,13 +134,15 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ALLOWED_ORIGINS = [
-    'http://204.89.24.210:8000',
-]
+# uncomment the line below when CORS_ALLOW_ALL_ORIGINS is set to False
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:8000',
+#     'http://204.89.24.210:8000',
+# ]
 
 # CORS_ALLOWED_ORIGIN_REGEXES = []
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 
 # CORS_URLS_REGEX below defaults to r'^.*$' , i.e. match all URL's
 CORS_URLS_REGEX = r'^.*$'
@@ -176,3 +175,5 @@ CORS_ALLOW_METHODS = list(default_methods) + [
 # ]
 
 CORS_ALLOW_HEADERS = list(default_headers) + []
+
+STATIC_ROOT=os.path.join(BASE_DIR, "static/")
