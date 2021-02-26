@@ -1,1 +1,1 @@
-web: gunicorn ./chibichibi_django/chibichibibangbang.wsgi
+web: gunicorn chibichibibangbang.wsgi
