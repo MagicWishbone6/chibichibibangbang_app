@@ -130,7 +130,7 @@ dmypy.json
 
 # CAITLIN ADDED
 # Pipfile.lock
-manage.py
+# manage.py
 settings.sql
 
 # FROM DJANGO DEPLOY REPO SEI-1130
