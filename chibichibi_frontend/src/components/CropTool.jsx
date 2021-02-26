@@ -93,12 +93,12 @@ class CropTool extends PureComponent {
     return (
       <GridContainer>
         <GridItem>
-            <CustomInput
+            {/* <CustomInput
                 formControlProps={{
                     fullWidth: true
-                }}>
+                }}> */}
                 <input type="file" accept="image/*" onChange={this.onSelectFile} />
-            </CustomInput>
+            {/* </CustomInput> */}
         </GridItem>
         <GridItem>
         {src && (
