@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
+from .views import index
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('chibichibibangbang.urls')),
-    path('api-auth', include('rest_framework.urls', namespace='rest_framework'))
+    # path('', include('chibichibibangbang.urls')),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    path('', index, name='index'),
 ]
 

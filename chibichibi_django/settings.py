@@ -1,5 +1,6 @@
 import os
 import dj_database_url
+import django_heroku
 
 """
 Django settings for chibichibi_django project.
@@ -16,6 +17,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from corsheaders.defaults import default_headers, default_methods
 
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,7 +67,10 @@ ROOT_URLCONF = 'chibichibi_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'chibichibi_frontend', 'build'),
+            os.path.join(BASE_DIR, 'chibichibi_frontend', 'public'),
+            os.path.join(BASE_DIR, 'static')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -176,4 +181,16 @@ CORS_ALLOW_METHODS = list(default_methods) + [
 
 CORS_ALLOW_HEADERS = list(default_headers) + []
 
-STATIC_ROOT=os.path.join(BASE_DIR, "static/")
+# Place static in the same location as webpack build files
+STATIC_ROOT=os.path.join(BASE_DIR, 'chibichibi_frontend', 'build', 'static')
+
+# If you want to serve user uploaded files add these settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'chibichibi_frontend', 'build', 'media')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Configure app for Heroku deployment
+django_heroku.settings(locals())
+
+del DATABASES['default']['OPTIONS']['sslmode']
