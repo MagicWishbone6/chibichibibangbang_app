@@ -1,15 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './components/muik-components/assets/css/material-kit-react.css.map'
-import './components/muik-components/assets/scss/material-kit-react.scss'
-=======
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
->>>>>>> initial commit
 
 ReactDOM.render(
   <React.StrictMode>
