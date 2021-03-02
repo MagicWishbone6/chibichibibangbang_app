@@ -30,7 +30,7 @@ function CharacterAlbum() {
 
     const refreshList = () => {
         axios
-            .get('/characters')
+            .get('https://chibichibibangbang.herokuapp.com/characters/')
             .then(res => setCharacters(res.data))
             .catch(err => console.log(err))
     }
