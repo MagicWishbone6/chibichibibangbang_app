@@ -52,6 +52,7 @@ function CharacterCard({
                     <br></br>
                     <small><a 
                     href=''
+                    style={{textDecoration: 'none'}}
                     className={classes.cardLink}
                     onClick={(e) => {
                         setAnchorElBottom(e.currentTarget)
