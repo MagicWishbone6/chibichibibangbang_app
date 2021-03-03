@@ -5,7 +5,9 @@ import Card from "./muik-components/Card/Card.js";
 import CardBody from "./muik-components/Card/CardBody.js";
 import imagesStyles from "./muik-components/assets/jss/material-kit-react/imagesStyles.js";
 import cardBodyStyle from './muik-components/assets/jss/material-kit-react/components/cardBodyStyle'
+// import CardHeader from './muik-components/Card/CardHeader'
 import cardHeaderStyle from './muik-components/assets/jss/material-kit-react/components/cardHeaderStyle'
+import buttonStyle from './muik-components/assets/jss/material-kit-react/components/buttonStyle'
 import { cardLink, cardSubtitle, cardTitle } from "./muik-components/assets/jss/material-kit-react.js";
 import Popover from '@material-ui/core/Popover';
 import popoverStyles from './muik-components/assets/jss/material-kit-react/popoverStyles'
@@ -17,7 +19,8 @@ const styles = {
     cardLink,
     ...popoverStyles,
     cardBodyStyle,
-    cardHeaderStyle
+    cardHeaderStyle,
+    ...buttonStyle,
   }
   
 const useStyles = makeStyles(styles);
@@ -33,25 +36,53 @@ function CharacterCard({
     
     const [anchorElBottom, setAnchorElBottom] = React.useState(null);
 
+    const handleClick = () => {
+        
+    }
+
     return (
         <Card 
-        style={{maxWidth: '12rem', margin: '0 8px 8px 0', flex: 'auto'}}
+        onClick={handleClick}
+        className={classes.special}
+        style={{
+            margin: '0 8px 8px 0', 
+            // flexGrow: 'auto',
+            // height: '250px'
+            flexShrink: 1,
+        }}
         >
+            {/* <CardHeader color='warning'>Test</CardHeader> */}
             <img
             style={{
-                width: "100%", 
+                // width: "100%", 
                 // display: "block"
+                // height: 'auto'
+                height: 200,
             }}
-            className={`${classes.imgCardTop}, ${classes.cardHeaderStyle}`}
+            // className={`
+            // ${classes.imgCardTop}, 
+            // ${classes.cardHeaderStyle}
+            // `}
             src={image_url}
             alt={name}
             />
-            <CardBody className={classes.cardBodyStyle}>
-                <h5>
+            <CardBody 
+            style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                paddingLeft: '1rem',
+                paddingBottom: 0,
+                paddingTop: 0,
+            }}
+            >
+                {/* <h5 style={{
+                    marginTop: 0,
+                    marginBottom: 5
+                }}>
                     {name}
                     <br></br>
                     <small><a 
-                    href=''
+                    href='/'
                     style={{textDecoration: 'none'}}
                     className={classes.cardLink}
                     onClick={(e) => {
@@ -59,7 +90,7 @@ function CharacterCard({
                         e.preventDefault()}}>
                             View Source
                 </a></small>
-                </h5>
+                </h5> */}
                 <Popover
                     classes={{
                         paper: classes.popover
