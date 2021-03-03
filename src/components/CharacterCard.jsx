@@ -5,12 +5,19 @@ import Card from "./muik-components/Card/Card.js";
 import CardBody from "./muik-components/Card/CardBody.js";
 import imagesStyles from "./muik-components/assets/jss/material-kit-react/imagesStyles.js";
 import cardBodyStyle from './muik-components/assets/jss/material-kit-react/components/cardBodyStyle'
-// import CardHeader from './muik-components/Card/CardHeader'
 import cardHeaderStyle from './muik-components/assets/jss/material-kit-react/components/cardHeaderStyle'
 import buttonStyle from './muik-components/assets/jss/material-kit-react/components/buttonStyle'
 import { cardLink, cardSubtitle, cardTitle } from "./muik-components/assets/jss/material-kit-react.js";
 import Popover from '@material-ui/core/Popover';
 import popoverStyles from './muik-components/assets/jss/material-kit-react/popoverStyles'
+import CropFreeTwoToneIcon from '@material-ui/icons/CropFreeTwoTone';
+import GetAppTwoToneIcon from '@material-ui/icons/GetAppTwoTone';
+import SaveAltTwoToneIcon from '@material-ui/icons/SaveAltTwoTone';
+import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
+import AccountBoxTwoToneIcon from '@material-ui/icons/AccountBoxTwoTone';
+import OpenInNewTwoToneIcon from '@material-ui/icons/OpenInNewTwoTone';
+import PhotoSizeSelectLargeTwoToneIcon from '@material-ui/icons/PhotoSizeSelectLargeTwoTone';
+import WebAssetTwoToneIcon from '@material-ui/icons/WebAssetTwoTone';
 
 const styles = {
     ...imagesStyles,
@@ -36,33 +43,22 @@ function CharacterCard({
     
     const [anchorElBottom, setAnchorElBottom] = React.useState(null);
 
-    const handleClick = () => {
-        
-    }
-
     return (
         <Card 
-        onClick={handleClick}
         className={classes.special}
         style={{
             margin: '0 8px 8px 0', 
-            // flexGrow: 'auto',
-            // height: '250px'
             flexShrink: 1,
         }}
-        >
-            {/* <CardHeader color='warning'>Test</CardHeader> */}
+        // onClick={(e) => {
+        //     setAnchorElBottom(e.currentTarget)
+        //     e.preventDefault()
+        // }}
+        >   
             <img
             style={{
-                // width: "100%", 
-                // display: "block"
-                // height: 'auto'
                 height: 200,
             }}
-            // className={`
-            // ${classes.imgCardTop}, 
-            // ${classes.cardHeaderStyle}
-            // `}
             src={image_url}
             alt={name}
             />
@@ -75,11 +71,11 @@ function CharacterCard({
                 paddingTop: 0,
             }}
             >
-                {/* <h5 style={{
+                <h5 style={{
                     marginTop: 0,
                     marginBottom: 5
                 }}>
-                    {name}
+                    {/* {name} */}
                     <br></br>
                     <small><a 
                     href='/'
@@ -88,9 +84,16 @@ function CharacterCard({
                     onClick={(e) => {
                         setAnchorElBottom(e.currentTarget)
                         e.preventDefault()}}>
-                            View Source
+                            {/* <CropFreeTwoToneIcon />
+                            <GetAppTwoToneIcon />
+                            <SaveAltTwoToneIcon /> */}
+                            {/* <AccountBoxTwoToneIcon /> */}
+                            <PhotoSizeSelectLargeTwoToneIcon />
+                            {/* <FavoriteTwoToneIcon /> */}
+                            {/* <OpenInNewTwoToneIcon /> */}
+                            <WebAssetTwoToneIcon />
                 </a></small>
-                </h5> */}
+                </h5>
                 <Popover
                     classes={{
                         paper: classes.popover

@@ -45,6 +45,7 @@ function CharacterAlbum() {
         style={{
             display: 'flex',
             flexWrap: 'wrap',
+            justifyContent: 'space-between'
             // flexDirection: 'row',
         }}
         // className={classes.cardGrid}
@@ -72,10 +73,7 @@ function CharacterAlbum() {
                                 <div 
                                 style={{
                                     display: 'flex',
-                                    // flexGrow: 'auto',
-                                    // alignSelf: 'space-between'
-
-                                        // maxHeight: 150,
+                     // maxHeight: 150,
                                         // lineHeight: 150,
                                         // margin: 0 1rem 1rem 0;
                                         flex: 'auto auto auto',
