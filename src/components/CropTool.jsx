@@ -112,7 +112,7 @@ class CropTool extends PureComponent {
   }
 
   render() {
-    const { crop, croppedImageUrl, src } = this.state;
+    const { crop, croppedImageUrl} = this.state;
 
     return (
       <GridContainer>
