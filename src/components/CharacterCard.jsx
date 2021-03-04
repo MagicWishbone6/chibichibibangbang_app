@@ -11,6 +11,7 @@ import Popover from '@material-ui/core/Popover';
 import popoverStyles from './muik-components/assets/jss/material-kit-react/popoverStyles'
 import CropFreeTwoToneIcon from '@material-ui/icons/CropFreeTwoTone';
 import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
+import CropTool from './CropTool'
 
 const styles = {
     ...imagesStyles,
@@ -37,7 +38,8 @@ function CharacterCard({
     
     const classes = useStyles()
     
-    const [anchorElBottom, setAnchorElBottom] = useState(null);
+    const [anchorElTopCrop, setAnchorElTopCrop] = useState(null);
+    const [anchorElTopInfo, setAnchorElTopInfo] = useState(null);
 
     const overlayLinkHover = (e) => {
         // setIconVisibility('visible')
@@ -86,7 +88,7 @@ function CharacterCard({
                     }}
                     className={classes.overlayLink}
                     onClick={(e) => {
-                        setAnchorElBottom(e.currentTarget)
+                        setAnchorElTopCrop(e.currentTarget)
                         e.preventDefault()}}>
                             <CropFreeTwoToneIcon />
                     </a>
@@ -99,7 +101,7 @@ function CharacterCard({
                         }}
                         className={classes.overlayLink}
                         onClick={(e) => {
-                            setAnchorElBottom(e.currentTarget)
+                            setAnchorElTopInfo(e.currentTarget)
                             e.preventDefault()}}>
                                 <InfoTwoToneIcon />
                     </a>
@@ -109,20 +111,40 @@ function CharacterCard({
                     classes={{
                         paper: classes.popover
                     }}
-                    open={Boolean(anchorElBottom)}
-                    anchorEl={anchorElBottom}
-                    onClose={() => setAnchorElBottom(null)}
+                    open={Boolean(anchorElTopCrop)}
+                    anchorEl={anchorElTopCrop}
+                    onClose={() => setAnchorElTopCrop(null)}
                     anchorOrigin={{
-                        vertical: "bottom",
+                        vertical: "top",
                         horizontal: "center"
                     }}
                     transformOrigin={{
-                        vertical: "top",
+                        vertical: "bottom",
                         horizontal: "center"
                     }}
                 >
                     <div className={classes.popoverBody}>
-                    {source_url}
+                        <CropTool />
+                    </div>
+                </Popover>
+                <Popover
+                    classes={{
+                        paper: classes.popover
+                    }}
+                    open={Boolean(anchorElTopInfo)}
+                    anchorEl={anchorElTopInfo}
+                    onClose={() => setAnchorElTopInfo(null)}
+                    anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "center"
+                    }}
+                    transformOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center"
+                    }}
+                >
+                    <div className={classes.popoverBody}>
+                        {source_url}
                     </div>
                 </Popover>
         </Card>
