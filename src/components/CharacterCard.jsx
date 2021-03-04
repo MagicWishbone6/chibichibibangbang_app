@@ -1,29 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Card from "./muik-components/Card/Card.js";
-import CardBody from "./muik-components/Card/CardBody.js";
 import imagesStyles from "./muik-components/assets/jss/material-kit-react/imagesStyles.js";
 import cardBodyStyle from './muik-components/assets/jss/material-kit-react/components/cardBodyStyle'
 import cardHeaderStyle from './muik-components/assets/jss/material-kit-react/components/cardHeaderStyle'
 import buttonStyle from './muik-components/assets/jss/material-kit-react/components/buttonStyle'
-import { cardLink, cardSubtitle, cardTitle } from "./muik-components/assets/jss/material-kit-react.js";
+import { cardLink, cardSubtitle, cardTitle, overlayLink } from "./muik-components/assets/jss/material-kit-react.js";
 import Popover from '@material-ui/core/Popover';
 import popoverStyles from './muik-components/assets/jss/material-kit-react/popoverStyles'
 import CropFreeTwoToneIcon from '@material-ui/icons/CropFreeTwoTone';
-import GetAppTwoToneIcon from '@material-ui/icons/GetAppTwoTone';
-import SaveAltTwoToneIcon from '@material-ui/icons/SaveAltTwoTone';
-import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
-import AccountBoxTwoToneIcon from '@material-ui/icons/AccountBoxTwoTone';
-import OpenInNewTwoToneIcon from '@material-ui/icons/OpenInNewTwoTone';
-import PhotoSizeSelectLargeTwoToneIcon from '@material-ui/icons/PhotoSizeSelectLargeTwoTone';
-import WebAssetTwoToneIcon from '@material-ui/icons/WebAssetTwoTone';
+import InfoTwoToneIcon from '@material-ui/icons/InfoTwoTone';
 
 const styles = {
     ...imagesStyles,
     cardTitle,
     cardSubtitle,
     cardLink,
+    overlayLink,
     ...popoverStyles,
     cardBodyStyle,
     cardHeaderStyle,
@@ -39,9 +33,23 @@ function CharacterCard({
     source_url,
     image_url
 }) {
+    // const [iconVisibility, setIconVisibility] = useState('hidden')
+    
     const classes = useStyles()
     
-    const [anchorElBottom, setAnchorElBottom] = React.useState(null);
+    const [anchorElBottom, setAnchorElBottom] = useState(null);
+
+    const overlayLinkHover = (e) => {
+        // setIconVisibility('visible')
+        // e.target.querySelector('imgCardOverlay').style.visibility = {iconVisibility}
+        e.preventDefault()
+    }
+
+    const overlayLinkLeaveHover = (e) => {
+        // setIconVisibility('hidden')
+        // e.target.querySelector('.imgCardOverlay').style.visibility = {iconVisibility}
+        e.preventDefault()
+    }
 
     return (
         <Card 
@@ -50,50 +58,53 @@ function CharacterCard({
             margin: '0 8px 8px 0', 
             flexShrink: 1,
         }}
-        // onClick={(e) => {
-        //     setAnchorElBottom(e.currentTarget)
-        //     e.preventDefault()
-        // }}
+        onMouseOver={overlayLinkHover}
+        onMouseOut={overlayLinkLeaveHover}
         >   
             <img
-            style={{
-                height: 200,
-            }}
-            src={image_url}
-            alt={name}
+                style={{
+                    height: 200,
+                }}
+                src={image_url}
+                alt={name}
             />
-            <CardBody 
-            style={{
-                display: 'flex',
-                alignItems: 'flex-end',
-                paddingLeft: '1rem',
-                paddingBottom: 0,
-                paddingTop: 0,
-            }}
-            >
-                <h5 style={{
-                    marginTop: 0,
-                    marginBottom: 5
-                }}>
-                    {/* {name} */}
-                    <br></br>
-                    <small><a 
+            <div 
+                className={classes.imgCardOverlay}
+                style={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'space-between',
+                    paddingLeft: '1rem',
+                    paddingBottom: 0,
+                    paddingTop: 0,
+            }}>
+                <div>
+                    <a 
                     href='/'
-                    style={{textDecoration: 'none'}}
-                    className={classes.cardLink}
+                    style={{
+                        textDecoration: 'none',
+                    }}
+                    className={classes.overlayLink}
                     onClick={(e) => {
                         setAnchorElBottom(e.currentTarget)
                         e.preventDefault()}}>
-                            {/* <CropFreeTwoToneIcon />
-                            <GetAppTwoToneIcon />
-                            <SaveAltTwoToneIcon /> */}
-                            {/* <AccountBoxTwoToneIcon /> */}
-                            <PhotoSizeSelectLargeTwoToneIcon />
-                            {/* <FavoriteTwoToneIcon /> */}
-                            {/* <OpenInNewTwoToneIcon /> */}
-                            <WebAssetTwoToneIcon />
-                </a></small>
-                </h5>
+                            <CropFreeTwoToneIcon />
+                    </a>
+                </div>
+                <div>
+                    <a
+                        href='/'
+                        style={{
+                            textDecoration: 'none',
+                        }}
+                        className={classes.overlayLink}
+                        onClick={(e) => {
+                            setAnchorElBottom(e.currentTarget)
+                            e.preventDefault()}}>
+                                <InfoTwoToneIcon />
+                    </a>
+                </div>
+            </div>
                 <Popover
                     classes={{
                         paper: classes.popover
@@ -114,7 +125,6 @@ function CharacterCard({
                     {source_url}
                     </div>
                 </Popover>
-            </CardBody>
         </Card>
     );
 }
