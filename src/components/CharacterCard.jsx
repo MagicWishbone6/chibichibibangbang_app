@@ -35,6 +35,7 @@ function CharacterCard({
     image_url
 }) {
     // const [iconVisibility, setIconVisibility] = useState('hidden')
+    const [targetImage, setTargetImage] = useState('')
     
     const classes = useStyles()
     
@@ -44,12 +45,14 @@ function CharacterCard({
     const overlayLinkHover = (e) => {
         // setIconVisibility('visible')
         // e.target.querySelector('imgCardOverlay').style.visibility = {iconVisibility}
+        setTargetImage(e.currentTarget.children[0].src)
         e.preventDefault()
     }
 
     const overlayLinkLeaveHover = (e) => {
         // setIconVisibility('hidden')
         // e.target.querySelector('.imgCardOverlay').style.visibility = {iconVisibility}
+        setTargetImage('')
         e.preventDefault()
     }
 
@@ -124,7 +127,8 @@ function CharacterCard({
                     }}
                 >
                     <div className={classes.popoverBody}>
-                        <CropTool />
+                        <CropTool 
+                        imgSrc={targetImage}/>
                     </div>
                 </Popover>
                 <Popover
