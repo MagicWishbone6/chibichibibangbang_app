@@ -1,35 +1,57 @@
 // from https://www.npmjs.com/package/react-image-crop#installation
 import React, { PureComponent } from 'react';
+// import imagesStyles from './muik-components/assets/jss/material-kit-react/imagesStyles'
+// import { makeStyles } from "@material-ui/core/styles";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import CustomInput from './muik-components/CustomInput/CustomInput'
 import GridItem from './muik-components/Grid/GridItem'
 import GridContainer from './muik-components/Grid/GridContainer'
+import Success from "./muik-components/Typography/Success.js";
+
+// const styles = {
+//   ...imagesStyles,
+// }
+
+// const useStyles = makeStyles(styles);
 
 class CropTool extends PureComponent {
-  state = {
-    src: null,
-    crop: {
-      unit: '%',
-      width: 30,
-      aspect: 16 / 16,
-    },
-  };
-
-  onSelectFile = e => {
-    if (e.target.files && e.target.files.length > 0) {
-      const reader = new FileReader();
-      reader.addEventListener('load', () =>
-        this.setState({ src: reader.result })
-      );
-      reader.readAsDataURL(e.target.files[0]);
+  constructor(props) {
+    super(props)
+    // this.src = props.imgSrc
+    this.state = {
+      src: props.imgSrc,
+      crop: {
+        unit: '%',
+        width: 30,
+        aspect: 16 / 16,
+      },
     }
-  };
+  }
+   
+  // classes = useStyles()
+
+  // onSelectFile = e => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     const reader = new FileReader();
+  //     reader.addEventListener('load', () =>
+  //       this.setState({ src: reader.result })
+  //     );
+  //     reader.readAsDataURL(e.target.files[0]);
+  //   }
+  // };
+
+  // onLoad = e => {
+  //   const img = new Image();
+  //     img.addEventListener('load', () =>
+  //       this.setState({ src: img.result })
+  //     );
+
+  //   }
 
   // If you setState the crop in here you should return false.
-  onImageLoaded = image => {
-    this.imageRef = image;
-  };
+  // onImageLoaded = image => {
+  //   this.src = image.src
+  // };
 
   onCropComplete = crop => {
     this.makeClientCrop(crop);
@@ -42,9 +64,9 @@ class CropTool extends PureComponent {
   };
 
   async makeClientCrop(crop) {
-    if (this.imageRef && crop.width && crop.height) {
+    if (this.state.src && crop.width && crop.height) {
       const croppedImageUrl = await this.getCroppedImg(
-        this.imageRef,
+        this.state.src,
         crop,
         'newFile.jpeg'
       );
@@ -59,9 +81,11 @@ class CropTool extends PureComponent {
     canvas.width = crop.width;
     canvas.height = crop.height;
     const ctx = canvas.getContext('2d');
+    const img = new Image()
+    img.src = this.state.src
 
     ctx.drawImage(
-      image,
+      img,
       crop.x * scaleX,
       crop.y * scaleY,
       crop.width * scaleX,
@@ -92,21 +116,29 @@ class CropTool extends PureComponent {
 
     return (
       <GridContainer>
-        <GridItem>
+        {/* <GridItem> */}
             {/* <CustomInput
                 formControlProps={{
                     fullWidth: true
                 }}> */}
-                <input type="file" accept="image/*" onChange={this.onSelectFile} />
+                {/* <input type="file" accept="image/*" onChange={this.onSelectFile} /> */}
             {/* </CustomInput> */}
+        {/* </GridItem> */}
+        <GridItem>
+              <Success>
+                <span style={{fontWeight: 600}}>
+                 Cropping Tool
+                </span>
+              </Success>
         </GridItem>
         <GridItem>
-        {src && (
-          <ReactCrop
-            src={src}
+        {this.state.src && (
+          <ReactCrop 
+            src={this.state.src}
             crop={crop}
             ruleOfThirds
-            onImageLoaded={this.onImageLoaded}
+            // onLoad={this.onPopoverLoad}
+            // onImageLoaded={this.onImageLoaded}
             onComplete={this.onCropComplete}
             onChange={this.onCropChange}
           />
@@ -114,7 +146,9 @@ class CropTool extends PureComponent {
         </GridItem>
         <GridItem>
         {croppedImageUrl && (
-          <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
+          <img 
+          // className={this.classes.imgFluid}
+          alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
         )}
         </GridItem>
       </GridContainer>

@@ -174,6 +174,10 @@ const cardLink = {
   }
 };
 
+const overlayLink = {
+    marginLeft: "1.25rem"
+}
+
 const cardSubtitle = {
   marginBottom: "0",
   marginTop: "-.375rem"
@@ -213,5 +217,6 @@ export {
   title,
   cardTitle,
   cardLink,
-  cardSubtitle
+  cardSubtitle,
+  overlayLink
 };
