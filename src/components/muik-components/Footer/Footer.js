@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
 
-import styles from "assets/jss/material-kit-react/components/footerStyle.js";
+import styles from "../assets/jss/material-kit-react/components/footerStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -27,11 +27,11 @@ export default function Footer(props) {
     [classes.footerWhiteFont]: whiteFont
   });
   return (
-    <footer className={footerClasses}>
+    <footer className={footerClasses} style={{marginBottom: 5}}>
       <div className={classes.container}>
         <div className={classes.left}>
           <List className={classes.list}>
-            <ListItem className={classes.inlineBlock}>
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="https://www.creative-tim.com/?ref=mkr-footer"
                 className={classes.block}
@@ -39,8 +39,8 @@ export default function Footer(props) {
               >
                 Creative Tim
               </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
+            </ListItem> */}
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="https://www.creative-tim.com/presentation?ref=mkr-footer"
                 className={classes.block}
@@ -48,8 +48,8 @@ export default function Footer(props) {
               >
                 About us
               </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
+            </ListItem> */}
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="http://blog.creative-tim.com/?ref=mkr-footer"
                 className={classes.block}
@@ -57,8 +57,8 @@ export default function Footer(props) {
               >
                 Blog
               </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
+            </ListItem> */}
+            {/* <ListItem className={classes.inlineBlock}>
               <a
                 href="https://www.creative-tim.com/license?ref=mkr-footer"
                 className={classes.block}
@@ -66,20 +66,22 @@ export default function Footer(props) {
               >
                 Licenses
               </a>
-            </ListItem>
+            </ListItem> */}
           </List>
         </div>
-        <div className={classes.right}>
-          &copy; {1900 + new Date().getYear()} , made with{" "}
-          <Favorite className={classes.icon} /> by{" "}
-          <a
+        <div style={{fontSize: 10}}>
+          &copy; {1900 + new Date().getYear()}  
+          {/* made with{" "}
+          <Favorite className={classes.icon} />  */}
+          {" "}by{" "}
+          {/* <a
             href="https://www.creative-tim.com?ref=mkr-footer"
             className={aClasses}
             target="_blank"
-          >
-            Creative Tim
-          </a>{" "}
-          for a better web.
+          > */}
+            Caitlin Lamprecht
+          {/* </a>{" "}
+          for a better web. */}
         </div>
       </div>
     </footer>

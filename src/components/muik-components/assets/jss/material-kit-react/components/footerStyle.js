@@ -1,11 +1,11 @@
-import { container, primaryColor } from "assets/jss/material-kit-react.js";
+import { container, primaryColor } from "../../../../assets/jss/material-kit-react.js";
 
 const footerStyle = {
   block: {
-    color: "inherit",
+    color: primaryColor,
     padding: "0.9375rem",
     fontWeight: "500",
-    fontSize: "12px",
+    fontSize: "10px",
     textTransform: "uppercase",
     borderRadius: "3px",
     textDecoration: "none",
@@ -22,6 +22,7 @@ const footerStyle = {
     float: "right!important"
   },
   footer: {
+    color: primaryColor,
     padding: "0.9375rem 0",
     textAlign: "center",
     display: "flex",
@@ -50,6 +51,7 @@ const footerStyle = {
     width: "auto"
   },
   icon: {
+    color: primaryColor,
     width: "18px",
     height: "18px",
     position: "relative",
