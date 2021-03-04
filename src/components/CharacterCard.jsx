@@ -79,9 +79,11 @@ function CharacterCard({
                     display: 'flex',
                     alignItems: 'flex-end',
                     justifyContent: 'space-between',
-                    paddingLeft: '1rem',
+                    // paddingLeft: '1rem',
                     paddingBottom: 0,
                     paddingTop: 0,
+                    margin: 0,
+                    opacity: .6
             }}>
                 <div>
                     <a 

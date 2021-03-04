@@ -17,7 +17,7 @@ import Success from "./muik-components/Typography/Success.js";
 class CropTool extends PureComponent {
   constructor(props) {
     super(props)
-    this.src = props.imgSrc
+    // this.src = props.imgSrc
     this.state = {
       src: props.imgSrc,
       crop: {
@@ -49,9 +49,9 @@ class CropTool extends PureComponent {
   //   }
 
   // If you setState the crop in here you should return false.
-  onImageLoaded = image => {
-    this.src = image.src
-  };
+  // onImageLoaded = image => {
+  //   this.src = image.src
+  // };
 
   onCropComplete = crop => {
     this.makeClientCrop(crop);
@@ -64,9 +64,9 @@ class CropTool extends PureComponent {
   };
 
   async makeClientCrop(crop) {
-    if (this.src && crop.width && crop.height) {
+    if (this.state.src && crop.width && crop.height) {
       const croppedImageUrl = await this.getCroppedImg(
-        this.src,
+        this.state.src,
         crop,
         'newFile.jpeg'
       );
@@ -81,9 +81,8 @@ class CropTool extends PureComponent {
     canvas.width = crop.width;
     canvas.height = crop.height;
     const ctx = canvas.getContext('2d');
-    // const img = ImageBitmap(this.src)
     const img = new Image()
-    img.src = this.src
+    img.src = this.state.src
 
     ctx.drawImage(
       img,
@@ -113,7 +112,7 @@ class CropTool extends PureComponent {
   }
 
   render() {
-    const { crop, croppedImageUrl, src} = this.state;
+    const { crop, croppedImageUrl, src } = this.state;
 
     return (
       <GridContainer>
@@ -133,13 +132,13 @@ class CropTool extends PureComponent {
               </Success>
         </GridItem>
         <GridItem>
-        {this.src && (
+        {this.state.src && (
           <ReactCrop 
-            src={this.src}
+            src={this.state.src}
             crop={crop}
             ruleOfThirds
             // onLoad={this.onPopoverLoad}
-            onImageLoaded={this.onImageLoaded}
+            // onImageLoaded={this.onImageLoaded}
             onComplete={this.onCropComplete}
             onChange={this.onCropChange}
           />
